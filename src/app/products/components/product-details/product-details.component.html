@@ -1,0 +1,10 @@
+
+<p>{{product?.id}}</p>
+<p>{{product?.description}}</p>
+<label for="description"></label>
+
+
+<div *ngIf="product">
+  <input type="text" [(ngModel)]="product.description"   id="description" name="description" >
+</div>
+<button (click)="goback()">Torna indietro</button>
