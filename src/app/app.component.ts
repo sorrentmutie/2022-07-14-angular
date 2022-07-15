@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-demo';
+  numero = 42;
+  
+  changeInput() {
+    this.numero = 50;
+  }
 }

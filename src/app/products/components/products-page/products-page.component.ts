@@ -1,52 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Product } from '../../models/product';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.css']
 })
-export class ProductsPageComponent {
+export class ProductsPageComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   productsToBeOrdered: Product[] | undefined = undefined;
   selectedProduct: Product | undefined;
-  constructor() {
-    this.products = this.getProducts();
-    this.productsToBeOrdered = this.getProductsToBeOrdered();
-  }
+  subscriptionProducts: Subscription | undefined = undefined;
+  subscriptionProductsToBeOrdered: Subscription | undefined = undefined;
 
-  getProducts(): Product[] {
-    return [
-      { id: 1, name: "Frigorifero", price: 1000,
-      code: 100,
-      description: "descrizione 1",
-      releaseDate : new Date(),
-      image: "https://th.bing.com/th/id/OIP.qEZnrWcytrn3GH4phNhzcAHaHa?pid=ImgDet&rs=1"
-      },
-      { id: 2, name: "Frigorifero Speciale", price: 1200,
-      code: 200,
-      description: "descrizione 2",
-      releaseDate : new Date(),
-      image: "https://th.bing.com/th/id/OIP.qEZnrWcytrn3GH4phNhzcAHaHa?pid=ImgDet&rs=1"
-      }
-    ];
+  constructor(private service: ProductsService) {
   }
-
-  getProductsToBeOrdered(): Product[] {
-    return [
-      { id: 3, name: "Frigorifero", price: 1000,
-      code: 100,
-      description: "descrizione 1",
-      releaseDate : new Date(),
-      image: "https://th.bing.com/th/id/OIP.qEZnrWcytrn3GH4phNhzcAHaHa?pid=ImgDet&rs=1"
-      },
-      { id: 4, name: "Frigorifero Speciale", price: 1200,
-      code: 200,
-      description: "descrizione 2",
-      releaseDate : new Date(),
-      image: "https://th.bing.com/th/id/OIP.qEZnrWcytrn3GH4phNhzcAHaHa?pid=ImgDet&rs=1"
-      }
-    ];
+  ngOnDestroy(): void {
+      this.subscriptionProducts?.unsubscribe();
+      this.subscriptionProductsToBeOrdered?.unsubscribe();
+  }
+  ngOnInit(): void {
+    this.subscriptionProducts = this.service.getProductsFromApi().subscribe(x => this.products = x);
+    this.subscriptionProductsToBeOrdered = this.service.getProductsToBeOrderedAsObservable().subscribe(y => this.productsToBeOrdered = y);
   }
 
   notifyProducts(payload: Product): void {
