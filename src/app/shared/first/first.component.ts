@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { debounceTime, filter, map, Observable, range, timer } from 'rxjs';
 import { ProductsService } from 'src/app/products/services/products.service';
 
@@ -16,7 +17,7 @@ export class FirstComponent implements OnChanges  {
   @Input() valoreInput: number = 0;
   valoreCalcolato: number = 0;
 
-  constructor(private service: ProductsService){
+  constructor(private router: Router, private service: ProductsService){
 
        const sorgente$: Observable<number> =  range(0,10);
        sorgente$.pipe(
@@ -33,6 +34,10 @@ export class FirstComponent implements OnChanges  {
 
   getTitle(): string {
     return "Salvatore";
+  }
+
+  navigate(): void {
+     this.router.navigate(['/products']);
   }
 
 

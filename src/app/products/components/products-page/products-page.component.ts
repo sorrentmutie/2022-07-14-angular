@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
@@ -11,11 +12,10 @@ import { ProductsService } from '../../services/products.service';
 export class ProductsPageComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   productsToBeOrdered: Product[] | undefined = undefined;
-  selectedProduct: Product | undefined;
   subscriptionProducts: Subscription | undefined = undefined;
   subscriptionProductsToBeOrdered: Subscription | undefined = undefined;
 
-  constructor(private service: ProductsService) {
+  constructor(private router: Router, private service: ProductsService) {
   }
   ngOnDestroy(): void {
       this.subscriptionProducts?.unsubscribe();
@@ -28,7 +28,9 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   notifyProducts(payload: Product): void {
     // alert(payload.description);
-    this.selectedProduct = payload;
+    // navigazione
+    this.router.navigate(['/products', payload.id]);
+
   }
 
   notifyProductsToBeOrdered(payload: Product): void {
@@ -36,7 +38,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
  }
 
  showTable(){
-  this.selectedProduct = undefined;
+ // this.selectedProduct = undefined;
  }
 
 }

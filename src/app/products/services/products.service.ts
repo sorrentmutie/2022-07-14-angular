@@ -60,5 +60,9 @@ export class ProductsService {
     return this.httpClient.get<Product[]>(environment.urlProducts);
   }
 
+  getProductById(id: string): Observable<Product> {
+    return this.httpClient.get<Product>(environment.urlProducts + "/" + id);
+  }
+
 
 }

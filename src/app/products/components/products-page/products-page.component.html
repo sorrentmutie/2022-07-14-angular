@@ -2,19 +2,8 @@
 
 
 <div *ngIf="products.length > 0; else bloccoNoProdotti">
-
-
-  <div *ngIf="!selectedProduct; else showDetails">
     <app-products-table (notify)="notifyProducts($event)"  [products]="products" ></app-products-table>
-  </div>
-
-  <ng-template #showDetails>
-    <app-product-details (gobacknotify)="showTable()"  [product]="selectedProduct"></app-product-details>
-  </ng-template>
-
 </div>
-
-
 
 <div *ngIf="productsToBeOrdered && productsToBeOrdered.length > 0; else bloccoHtml">
    <app-products-table (notify)="notifyProductsToBeOrdered($event)"  title="Numero prodotti da riordinare" [products]="productsToBeOrdered" ></app-products-table>

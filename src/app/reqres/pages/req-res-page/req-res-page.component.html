@@ -1,0 +1,21 @@
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <td>id</td>
+      <td>Email</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Avatar</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of response?.data">
+      <td>{{person.id}}</td>
+      <td>{{person.email}}</td>
+      <td>{{person.first_name}}</td>
+      <td>{{person.last_name}}</td>
+      <td><img src="{{person.avatar}}"></td>
+    </tr>
+  </tbody>
+</table>
