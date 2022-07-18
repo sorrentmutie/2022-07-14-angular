@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   urlProducts: "http://localhost:7000/products",
   urlRandomUsers: "https://randomuser.me/api?results=50",
-  urlReqRes: "https://reqres.in/api/users?page=2"
+  urlReqRes: "https://reqres.in/api/users?page=2&delay=3"
 };
 
 /*

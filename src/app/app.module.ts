@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,16 +18,19 @@ import { WelcomeComponent } from './shared/welcome/welcome.component';
 import { MenuComponent } from './core/components/menu/menu.component';
 import { FirstInterceptor } from './core/interceptors/first.interceptor';
 import { SecondInterceptor } from './core/interceptors/second.interceptor';
+import { HeroFormComponent } from './hero-form/components/hero-form/hero-form.component';
+import { ReqResFormComponent } from './reqres/pages/req-res-form/req-res-form.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, FirstComponent, SecondComponent, ProductsPageComponent, ProductsTableComponent, MyFirstPipe, ProductDetailsComponent, RandomUsersPageComponent, UserCardComponent, ReqResPageComponent, NotFoundComponent, WelcomeComponent, MenuComponent
+    AppComponent, FirstComponent, SecondComponent, ProductsPageComponent, ProductsTableComponent, MyFirstPipe, ProductDetailsComponent, RandomUsersPageComponent, UserCardComponent, ReqResPageComponent, NotFoundComponent, WelcomeComponent, MenuComponent, HeroFormComponent, ReqResFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [

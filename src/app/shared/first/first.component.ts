@@ -40,5 +40,10 @@ export class FirstComponent implements OnChanges  {
      this.router.navigate(['/products']);
   }
 
+ onKey(evento: string): void {
+   // const myInput = evento.target as HTMLInputElement;
+    console.log(evento);
+ }
+
 
 }

@@ -19,3 +19,15 @@ export interface Support {
   url:  string;
   text: string;
 }
+
+
+export class ReqResPostRequest {
+  constructor(public name: string, public job: string){}
+}
+
+export interface ReqResPostResponse {
+  name: string,
+  job: string,
+  id: string,
+  createdAt: string
+}

@@ -1,1 +1,40 @@
 <p>second works!</p>
+
+<form *ngIf="myForm" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input formControlName="name"  type="text" class="form-control" name="name" id="name">
+
+
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+      <div *ngIf="name && name.errors && name.errors['required'] !== undefined">
+        Nome è obbligatorio
+      </div>
+
+      <div *ngIf="name && name.errors && name.errors['minlength'] !== undefined">
+        Lunghezza minima è 4
+      </div>
+
+      <div *ngIf="name && name.errors && name.errors['myValidator'] !== undefined">
+        Il nome deve cominciare con sal
+      </div>
+
+   </div>
+  </div>
+
+  <div class="form-group">
+    <label for="job">Job</label>
+    <input formControlName="job"  type="text" class="form-control" name="job" id="job">
+
+   <div *ngIf="job?.invalid && (job?.dirty || job?.touched)" class="alert alert-danger">
+      <div *ngIf="job && job.errors && job.errors['required'] !== undefined">
+        Lavoro è obbligatorio
+      </div>
+   </div>
+
+  </div>
+
+  <button [disabled]="myForm.invalid" class="btn btn-success" type="submit">OK</button>
+
+</form>
