@@ -1,0 +1,10 @@
+<button class="btn btn-success mt-5 me-5" (click)="onStart()">Start</button>
+<button class="btn btn-success mt-5 me-5" (click)="onStop()">Stop</button>
+
+<ul>
+  <li *ngFor="let customer of customers">
+    {{customer.name}} {{customer.city}}
+  </li>
+</ul>
+
+

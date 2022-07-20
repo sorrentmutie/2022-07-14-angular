@@ -1,0 +1,22 @@
+<form *ngIf="gotGroup" [formGroup]="gotGroup">
+
+  <div class="form-group">
+    <label for="season">Season</label>
+    <select formControlName="season" id="season" name="season" class="form-control">
+       <option value="{{season.id}}"  *ngFor="let season of seasons$ | async">{{season.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="episode">Episode</label>
+    <select formControlName="episode_choosen" id="episode" name="episode" class="form-control">
+       <option *ngFor="let ep of episodes$ | async" value="{{ep.id}}">{{ep.episodeTitle}}</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <button [disabled]="gotGroup.invalid" style="margin-top:5px" class="btn btn-success" type="submit">OK</button>
+  </div>
+
+</form>

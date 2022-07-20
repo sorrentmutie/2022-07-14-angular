@@ -27,6 +27,9 @@
         <li class="nav-item">
           <a class="nav-link"  [routerLink]="['/reqres']">Req Res</a>
         </li>
+        <li class="nav-item" *ngIf="lastCustomer">
+          {{lastCustomer.name}}
+        </li>
       </ul>
     </div>
   </div>
